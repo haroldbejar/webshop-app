@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import endPoints from "../endPoints/endPoint";
 import axios from "axios";
+import { setError } from "./errorSlice";
 
 interface Product {
   productId: number;
@@ -42,19 +43,32 @@ const initialState: ProductState = {
 // Thunks tipados
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (page: number) => {
-    const url = `${endPoints.product.list}/${page}/10`;
-    const response = await axios.get(url);
-    return response.data.products;
+  async (page: number, { dispatch }) => {
+    try {
+      const url = `${endPoints.product.list}/${page}/10`;
+      const response = await axios.get(url);
+      return response.data.products;
+    } catch (error: any) {
+      dispatch(setError(error.message));
+      throw error;
+    }
   }
 );
 
 export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchProductsByCategory",
-  async ({ categoryId, page }: { categoryId: number; page: number }) => {
-    const url = `${endPoints.product.listByCategory}/${categoryId}/${page}/10`;
-    const response = await axios.get(url);
-    return response.data;
+  async (
+    { categoryId, page }: { categoryId: number; page: number },
+    { dispatch }
+  ) => {
+    try {
+      const url = `${endPoints.product.listByCategory}/${categoryId}/${page}/10`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error: any) {
+      dispatch(setError(error.message));
+      throw error;
+    }
   }
 );
 
