@@ -22,7 +22,7 @@ const Aside: React.FC<AsideProps> = ({ onCategoryChange }) => {
   }, [status, dispatch]);
 
   const handleCategoryClick = (idCategory: number) => {
-    dispatch(fetchProductsByCategory(idCategory));
+    dispatch(fetchProductsByCategory({ categoryId: idCategory, page: 1 }));
     onCategoryChange(idCategory);
   };
 

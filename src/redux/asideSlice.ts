@@ -25,7 +25,7 @@ export const fetchCategories = createAsyncThunk<Category[]>(
     try {
       const url = `${endPoints.category.list}/1/10`; // TODO: parametros quemados, pasar a variables
       const response = await axios.get(url);
-      return response.data.categories.$values;
+      return response.data.categories;
     } catch (error: any) {
       throw Error(error.message);
     }

@@ -39,11 +39,13 @@ const Cart = () => {
             >
               <img
                 src={item.imageUrl}
-                alt={item.title}
+                alt={item.productName}
                 className="w-24 h-24 object-cover rounded-lg mr-4"
               />
               <div className="flex-grow">
-                <h2 className="text-lg font-semibold">{item.title}</h2>
+                <h2 className="text-lg font-semibold">
+                  {item.productCode} - {item.productName}
+                </h2>
                 <p className="text-gray-600">{item.description}</p>
                 <p className="text-gray-700">Cantidad: {item.quantity}</p>
                 <p className="text-gray-700">
