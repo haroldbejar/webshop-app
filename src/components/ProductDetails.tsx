@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 
 interface Product {
   productId: number;
-  title: string;
+  productCode: string;
+  productName: string;
   price: number;
   stock: number;
   imageUrl: string;
-  productCode: string;
   description: string;
 }
 
@@ -48,13 +48,15 @@ const ProductDetails: React.FC = () => {
           <div className="md:w-1/2">
             <img
               src={product.imageUrl}
-              alt={product.title}
+              alt={product.productCode}
               className="w-full h-auto md:h-full object-cover"
               style={{ maxHeight: "400px" }}
             />
           </div>
           <div className="md:w-1/2 p-4 md:p-6 flex flex-col justify-center">
-            <h2 className="text-xl font-bold mb-4">{product.title}</h2>
+            <h2 className="text-xl font-bold mb-4">
+              {product.productCode} - {product.productName}
+            </h2>
             <p className="text-gray-700 mb-2">
               <span className="font-semibold">Código:</span>{" "}
               {product.productCode}

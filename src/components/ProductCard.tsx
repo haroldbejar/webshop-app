@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 interface Product {
   productId: number;
   productCode: string;
-  title: string;
+  productName: string;
   price: number;
   stock: number;
   description: string;
@@ -40,11 +40,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       <Link to={`/product/${product.productId}`} state={{ product }}>
         <img
           src={product.imageUrl}
-          alt={product.title}
+          alt={product.productName}
           className="w-full h-48 object-cover mb-4 rounded"
         />
       </Link>
-      <h2 className="text-lg font-semibold mb-2">{`${product.productCode} - ${product.title}`}</h2>
+      <h2 className="text-lg font-semibold mb-2">{`${product.productCode} - ${product.productName}`}</h2>
       <p className="text-gray-700 mb-2">${product.price}</p>
       <p className="text-gray-500 mb-4">Stock: {product.stock}</p>
       <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>

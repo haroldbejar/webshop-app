@@ -5,7 +5,7 @@ import axios from "axios";
 interface Product {
   productId: number;
   productCode: string;
-  title: string;
+  productName: string;
   price: number;
   stock: number;
   description: string;
@@ -45,7 +45,7 @@ export const fetchProducts = createAsyncThunk(
   async (page: number) => {
     const url = `${endPoints.product.list}/${page}/10`;
     const response = await axios.get(url);
-    return response.data;
+    return response.data.products;
   }
 );
 
@@ -71,7 +71,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = "succeeded";
-        state.items = action.payload.products.$values;
+        state.items = action.payload;
         state.paginationObj = action.payload.paginationData || {
           totalCount: 0,
           pageSize: 10,
@@ -91,7 +91,7 @@ const productSlice = createSlice({
         fetchProductsByCategory.fulfilled,
         (state, action: PayloadAction<any>) => {
           state.status = "succeeded";
-          state.items = action.payload.productsCategory.$values;
+          state.items = action.payload.productsCategory;
           state.paginationObj = action.payload.paginationData || {
             totalCount: 0,
             pageSize: 10,

@@ -5,11 +5,11 @@ import Pagination from "./pagination";
 interface Product {
   productId: number;
   productCode: string;
-  title: string;
+  productName: string;
   price: number;
   stock: number;
-  imageUrl: string;
   description: string;
+  imageUrl: string;
 }
 
 interface ProductListProps {
