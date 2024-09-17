@@ -59,17 +59,16 @@ const ProductDetails: React.FC = () => {
               {product.productCode} - {product.productName}
             </h2>
             <p className="text-gray-700 mb-2">
-              <span className="font-semibold">Código:</span>{" "}
-              {product.productCode}
+              <span className="font-semibold">Code:</span> {product.productCode}
             </p>
             <p className="text-gray-700 mb-2">
-              <span className="font-semibold">Precio:</span> ${product.price}
+              <span className="font-semibold">Price:</span> ${product.price}
             </p>
             <p className="text-gray-700 mb-2">
               <span className="font-semibold">Stock:</span> {product.stock}
             </p>
             <p className="text-gray-700 mb-4">
-              <span className="font-semibold">Descripción:</span>{" "}
+              <span className="font-semibold">Description:</span>{" "}
               {product.description}
             </p>
             <div className="flex items-center justify-center space-x-2 mb-4">
@@ -91,7 +90,7 @@ const ProductDetails: React.FC = () => {
               onClick={handleAddToCart}
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
             >
-              Añadir al carrito
+              Add To Cart
             </button>
           </div>
         </div>

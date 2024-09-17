@@ -62,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         className="bg-blue-500 text-white p-2 rounded"
         onClick={handleAddToCart}
       >
-        Añadir al carrito
+        Add To Cart
       </button>
     </div>
   );

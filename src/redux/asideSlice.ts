@@ -51,7 +51,7 @@ const asideSlice = createSlice({
       )
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Error desconocido";
+        state.error = action.error.message || "Unknown error";
       });
   },
 });

@@ -27,9 +27,9 @@ const Cart = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Carrito de Compras</h1>
+      <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
       {cart.length === 0 ? (
-        <p>No hay productos en el carrito.</p>
+        <p>There are no prouducts in the cart.</p>
       ) : (
         <div>
           {cart.map((item: CartItem) => (
@@ -47,7 +47,7 @@ const Cart = () => {
                   {item.productCode} - {item.productName}
                 </h2>
                 <p className="text-gray-600">{item.description}</p>
-                <p className="text-gray-700">Cantidad: {item.quantity}</p>
+                <p className="text-gray-700">Quantity: {item.quantity}</p>
                 <p className="text-gray-700">
                   Precio por unidad: ${item.price}
                 </p>
@@ -68,17 +68,15 @@ const Cart = () => {
               </div>
               <div className="text-right">
                 <p className="text-gray-800 font-bold">
-                  Precio total: ${item.price * item.quantity}
+                  Total price: ${item.price * item.quantity}
                 </p>
               </div>
             </div>
           ))}
           <div className="mt-6 p-4 border-t">
-            <h2 className="text-xl font-bold">Resumen</h2>
-            <p className="text-gray-700">Total de productos: {totalQuantity}</p>
-            <p className="text-gray-800 font-bold">
-              Costo total: ${totalPrice}
-            </p>
+            <h2 className="text-xl font-bold">Summay</h2>
+            <p className="text-gray-700">Total products: {totalQuantity}</p>
+            <p className="text-gray-800 font-bold">Total cost: ${totalPrice}</p>
           </div>
         </div>
       )}

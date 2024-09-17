@@ -30,9 +30,9 @@ const Aside: React.FC<AsideProps> = ({ onCategoryChange }) => {
     <aside className="p-4 bg-gray-200 rounded-lg shadow-lg ml-4 flex flex-col w-80">
       <h2 className="text-xl font-bold mb-4">Categorías</h2>
       {status === "loading" ? (
-        <p>Cargando categorías...</p>
+        <p>Loading categories...</p>
       ) : error ? (
-        <p>Error al cargar categorías: {error}</p>
+        <p>Error loading categories: {error}</p>
       ) : (
         <ul>
           {categories.map((category) => (
