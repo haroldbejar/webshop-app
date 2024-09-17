@@ -11,6 +11,7 @@ interface Product {
   stock: number;
   imageUrl: string;
   description: string;
+  title?: string;
 }
 
 interface LocationState {

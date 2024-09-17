@@ -9,6 +9,7 @@ interface Product {
   stock: number;
   description: string;
   imageUrl: string;
+  title?: string;
 }
 
 interface ProductCardProps {

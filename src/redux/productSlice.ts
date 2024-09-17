@@ -11,6 +11,7 @@ interface Product {
   stock: number;
   description: string;
   imageUrl: string;
+  title?: string;
 }
 
 interface PaginationData {
@@ -47,7 +48,7 @@ export const fetchProducts = createAsyncThunk(
     try {
       const url = `${endPoints.product.list}/${page}/10`;
       const response = await axios.get(url);
-      return response.data.products;
+      return response.data;
     } catch (error: any) {
       dispatch(setError(error.message));
       throw error;
@@ -85,7 +86,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = "succeeded";
-        state.items = action.payload;
+        state.items = action.payload.products;
         state.paginationObj = action.payload.paginationData || {
           totalCount: 0,
           pageSize: 10,

@@ -38,7 +38,7 @@ const Shopy = () => {
   }, [dispatch, currentPage, selectedCategory]);
 
   const filteredProducts = products.filter((product) =>
-    product.productCode.toLowerCase().includes(searchTerm.toLowerCase())
+    product.productName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleSearch = (term: string) => {
