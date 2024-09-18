@@ -62,7 +62,8 @@ const ProductDetails: React.FC = () => {
               <span className="font-semibold">Code:</span> {product.productCode}
             </p>
             <p className="text-gray-700 mb-2">
-              <span className="font-semibold">Price:</span> ${product.price}
+              <span className="font-semibold">Price:</span> $
+              {product.price.toFixed(2)}
             </p>
             <p className="text-gray-700 mb-2">
               <span className="font-semibold">Stock:</span> {product.stock}

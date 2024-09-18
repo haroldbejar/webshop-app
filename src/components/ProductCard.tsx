@@ -46,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         />
       </Link>
       <h2 className="text-lg font-semibold mb-2">{`${product.productCode} - ${product.productName}`}</h2>
-      <p className="text-gray-700 mb-2">${product.price}</p>
+      <p className="text-gray-700 mb-2">${product.price.toFixed(2)}</p>
       <p className="text-gray-500 mb-4">Stock: {product.stock}</p>
       <p className="text-gray-600 mb-4 line-clamp-3">{product.description}</p>
       <div className="flex items-center justify-center space-x-2 mb-4">

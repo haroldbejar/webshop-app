@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { CartItem } from "../redux/cartSlice";
 import { fetchCustomer, createCustomer } from "../redux/customerSlice";
+import { createOrderPaymentAndDetials } from "../redux/orderSlice";
+import type { OrderDetailsViewModel } from "../redux/orderSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -90,6 +92,22 @@ const OrderPayment: React.FC = () => {
     );
   }
 
+  const handleCheckout = () => {
+    const orderDetailsViewmodel: OrderDetailsViewModel = {
+      order: {
+        customerId: customerState.customer?.customerId ?? 0,
+        description: "",
+        orderDate: new Date(),
+      },
+      orderDetails: cart.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+    };
+    dispatch(createOrderPaymentAndDetials(orderDetailsViewmodel));
+  };
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-lg ml-4 w-80 h-96 overflow-y-auto flex flex-col justify-between">
       <h2 className="text-xl font-bold mb-4">Customer Information</h2>
@@ -109,7 +127,10 @@ const OrderPayment: React.FC = () => {
       <p>
         <strong>Total order amount:</strong> ${totalPrice.toFixed(2)}
       </p>
-      <button className="bg-blue-500 text-white w-full py-2 mt-4 rounded self-end">
+      <button
+        className="bg-blue-500 text-white w-full py-2 mt-4 rounded self-end"
+        onClick={handleCheckout}
+      >
         Place Order
       </button>
     </div>

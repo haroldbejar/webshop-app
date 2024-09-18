@@ -49,7 +49,7 @@ const Cart = () => {
                 <p className="text-gray-600">{item.description}</p>
                 <p className="text-gray-700">Quantity: {item.quantity}</p>
                 <p className="text-gray-700">
-                  Precio por unidad: ${item.price}
+                  Precio por unidad: ${item.price.toFixed(2)}
                 </p>
                 <div className="flex items-center space-x-2 mt-2">
                   <button
@@ -76,7 +76,9 @@ const Cart = () => {
           <div className="mt-6 p-4 border-t">
             <h2 className="text-xl font-bold">Summay</h2>
             <p className="text-gray-700">Total products: {totalQuantity}</p>
-            <p className="text-gray-800 font-bold">Total cost: ${totalPrice}</p>
+            <p className="text-gray-800 font-bold">
+              Total cost: ${totalPrice.toFixed(2)}
+            </p>
           </div>
         </div>
       )}
