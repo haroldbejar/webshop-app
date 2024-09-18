@@ -42,7 +42,7 @@ export const createOrderPaymentAndDetials = createAsyncThunk(
       const response = await axios.post(url, orderDetailsViewModel);
       return response.data;
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'An error occurred';
+      const errorMessage = error.response?.data?.message || "An error occurred";
       dispatch(setError(errorMessage));
     }
   }
@@ -69,7 +69,6 @@ const orderSlice = createSlice({
         state.loading = false;
         state.order = action.payload.order;
         state.orderDetails = action.payload.orderDetails;
-        state.error = null;
       })
       .addCase(createOrderPaymentAndDetials.rejected, (state, action) => {
         state.loading = false;
