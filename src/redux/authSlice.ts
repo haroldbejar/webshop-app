@@ -6,7 +6,7 @@ import axios from "axios";
 interface AuthState {
   token: string | null;
   username: string | null;
-  userId: string | null;
+  userId: number | null;
   role: string | null;
   loading: boolean;
   error: string | null;
