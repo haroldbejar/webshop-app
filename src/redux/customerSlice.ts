@@ -40,7 +40,7 @@ export const fetchCustomer = createAsyncThunk(
   "customer/fetchCustomerById",
   async (customerId: number, { dispatch }) => {
     try {
-      const url = `${endPoints.customer.base}/${customerId}`;
+      const url = `${endPoints.customer.byUserId}/${customerId}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error: any) {

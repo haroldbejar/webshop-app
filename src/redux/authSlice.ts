@@ -25,10 +25,8 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (formData: { userName: string; password: string }, { dispatch }) => {
     try {
-      const response = await axios.post(
-        endPoints.authentication.login,
-        formData
-      );
+      const url = `${endPoints.authentication.login}`;
+      const response = await axios.post(url, formData);
       const { token, userName, id, role } = response.data;
       localStorage.setItem("token", token);
       return { username: userName, userId: id, role };

@@ -18,13 +18,11 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      dispatch(loginUser(formData))
-        .unwrap()
-        .then(() => {
-          navigate("/cart");
-        });
+      dispatch(loginUser(formData));
     } catch (error: any) {
       dispatch(setError(`${error} - Incorrect credentials or server error`));
+    } finally {
+      navigate("/cart");
     }
   };
 

@@ -20,7 +20,6 @@ export const useAuth = (): AuthData => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (token) {
       try {
         setAuthData({
@@ -37,7 +36,7 @@ export const useAuth = (): AuthData => {
         });
       }
     }
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return authData;
 };
