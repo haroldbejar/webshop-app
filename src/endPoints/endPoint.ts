@@ -25,7 +25,7 @@ const endPoints = {
     list: `${baseUrl}Category/getallcategories`,
   },
   authentication: {
-    login: `${baseUrl}user/login`,
+    login: `${baseUrl}User/login`,
     register: `${baseUrl}User/register`,
   },
 };

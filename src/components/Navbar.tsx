@@ -21,7 +21,11 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch, cartCount }) => {
         />
       </div>
       <div className="flex items-center space-x-4 text-white">
-        <FaUser className="text-2xl cursor-pointer" />
+        <div className="relative">
+          <Link to={"/login"}>
+            <FaUser className="text-2xl cursor-pointer" />
+          </Link>
+        </div>
         <div className="relative">
           <Link to={"/cart"}>
             <FaShoppingCart className="text-2xl cursor-pointer" />
