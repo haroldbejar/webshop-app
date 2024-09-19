@@ -15,7 +15,7 @@ const endPoints = {
     base: `${baseUrl}Order`,
     list: `${baseUrl}Order/getallorders`,
     byCustomer: `${baseUrl}Order/getorderbycustomer`,
-    createDetails: `${baseUrl}Order/createdetials`,
+    createDetails: `${baseUrl}Order/createdetails`,
   },
   orderDetails: {
     base: `${baseUrl}OrderDetail`,

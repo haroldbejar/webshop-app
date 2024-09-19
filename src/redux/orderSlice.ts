@@ -3,43 +3,36 @@ import endPoints from "../endPoints/endPoint";
 import axios from "axios";
 import { setError } from "./errorSlice";
 
-export interface Order {
-  customerId: number;
-  description: string;
-  orderDate: Date;
-}
-
 export interface OrderDetails {
   productId: number;
   quantity: number;
   price: number;
 }
-
-export interface OrderDetailsViewModel {
-  order: Order | null;
-  orderDetails: OrderDetails[] | null;
+export interface Order {
+  orderId?: number;
+  customerId: number;
+  description: string;
+  orderDate: Date;
+  orderDetails: OrderDetails[];
 }
 
-interface OrderPaymentState {
-  order: Order | null;
-  orderDetails: OrderDetails[] | null;
+interface OrderState {
+  orders: Order[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: OrderPaymentState = {
-  order: null,
-  orderDetails: null,
+const initialState: OrderState = {
+  orders: [],
   loading: false,
   error: null,
 };
 
-export const createOrderPaymentAndDetials = createAsyncThunk(
-  "orderPayment/createOrderPaymentAndDetials",
-  async (orderDetailsViewModel: OrderDetailsViewModel, { dispatch }) => {
+export const createOrder = createAsyncThunk(
+  "order/createOrder",
+  async (order: Order, { dispatch }) => {
     try {
-      const url = `${endPoints.order.createDetails}`;
-      const response = await axios.post(url, orderDetailsViewModel);
+      const response = await axios.post(endPoints.order.createDetails, order);
       return response.data;
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "An error occurred";
@@ -51,31 +44,22 @@ export const createOrderPaymentAndDetials = createAsyncThunk(
 const orderSlice = createSlice({
   name: "orderPayment",
   initialState,
-  reducers: {
-    resetOrderState: (state) => {
-      state.order = null;
-      state.orderDetails = null;
-      state.loading = false;
-      state.error = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createOrderPaymentAndDetials.pending, (state) => {
+      .addCase(createOrder.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(createOrderPaymentAndDetials.fulfilled, (state, action) => {
+      .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.order = action.payload.order;
-        state.orderDetails = action.payload.orderDetails;
+        state.orders.push(action.payload);
       })
-      .addCase(createOrderPaymentAndDetials.rejected, (state, action) => {
+      .addCase(createOrder.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
 
-export const { resetOrderState } = orderSlice.actions;
 export default orderSlice.reducer;

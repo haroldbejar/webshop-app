@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { CartItem } from "../redux/cartSlice";
 import { fetchCustomer, createCustomer } from "../redux/customerSlice";
-import { createOrderPaymentAndDetials } from "../redux/orderSlice";
-import type { OrderDetailsViewModel } from "../redux/orderSlice";
+import { createOrder, OrderDetails } from "../redux/orderSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -92,20 +91,19 @@ const OrderPayment: React.FC = () => {
     );
   }
 
-  const handleCheckout = () => {
-    const orderDetailsViewmodel: OrderDetailsViewModel = {
-      order: {
-        customerId: customerState.customer?.customerId ?? 0,
-        description: "",
-        orderDate: new Date(),
-      },
-      orderDetails: cart.map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        price: item.price,
-      })),
+  const handleSubmit = () => {
+    const details: OrderDetails[] = cart.map((item) => ({
+      productId: item.productId,
+      quantity: item.quantity,
+      price: item.price,
+    }));
+    const order = {
+      customerId: customerState.customer?.customerId ?? 0,
+      description: "some description",
+      orderDate: new Date(),
+      orderDetails: details,
     };
-    dispatch(createOrderPaymentAndDetials(orderDetailsViewmodel));
+    dispatch(createOrder(order));
   };
 
   return (
@@ -129,7 +127,7 @@ const OrderPayment: React.FC = () => {
       </p>
       <button
         className="bg-blue-500 text-white w-full py-2 mt-4 rounded self-end"
-        onClick={handleCheckout}
+        onClick={handleSubmit}
       >
         Place Order
       </button>
